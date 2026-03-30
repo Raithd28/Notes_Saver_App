@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Addnote } from "../component/Addnote";
+import { API } from "../config/api";
 import "./Card.css";
 
 export const Card = ({ id, title, desc , date}) => {
@@ -12,7 +13,7 @@ export const Card = ({ id, title, desc , date}) => {
   const handleDelete = async () => {
     if (window.confirm("Are you sure you want to delete this note?")) {
       try {
-        const res = await fetch(`http://localhost:9090/api/notes/${id}`, {
+        const res = await fetch(`${API.ENDPOINTS.NOTES_BASE}/${id}`, {
           method: "DELETE",
         });
         if (res.ok) {

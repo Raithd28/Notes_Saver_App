@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import { API } from "../config/api";
 import "./Addnote.css";
 
 export const Addnote = ({show,handleClose,edit,data}) => {
@@ -21,7 +22,7 @@ export const Addnote = ({show,handleClose,edit,data}) => {
     setLoading(true);
     try {
       if(edit){
-        const res = await fetch(`http://localhost:9090/api/notes/${data.id}`, {
+        const res = await fetch(`${API.ENDPOINTS.NOTES_BASE}/${data.id}`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
@@ -38,7 +39,7 @@ export const Addnote = ({show,handleClose,edit,data}) => {
           setError("Failed to update note");
         }
       } else {
-        const res = await fetch(`http://localhost:9090/api/notes/${sessionStorage.getItem("email")}`, {
+        const res = await fetch(`${API.ENDPOINTS.NOTES_BASE}/${sessionStorage.getItem("email")}`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

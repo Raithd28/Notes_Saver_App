@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Modal from 'react-bootstrap/Modal';
+import { API } from "../config/api";
 import "./AuthModal.css";
 
 export const Singup = ({show2,handleClose2}) => {
@@ -29,7 +30,7 @@ export const Singup = ({show2,handleClose2}) => {
         password,
       };
       try {
-        const res = await fetch("http://localhost:9090/api/user/login", {
+        const res = await fetch(API.ENDPOINTS.LOGIN, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -80,7 +81,7 @@ export const Singup = ({show2,handleClose2}) => {
         password,
       };
       try {
-        const res = await fetch("http://localhost:9090/api/user/", {
+        const res = await fetch(API.ENDPOINTS.SIGNUP, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

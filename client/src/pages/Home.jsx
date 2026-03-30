@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Card } from "../component/Card";
 import { Navbar } from "../component/Navbar";
+import { API } from "../config/api";
 import "./Home.css";
 
 export const Home = () => {
@@ -17,7 +18,7 @@ export const Home = () => {
         return;
       }
 
-      const response = await fetch(`http://localhost:9090/api/notes/${email}`);
+      const response = await fetch(`${API.ENDPOINTS.NOTES_BASE}/${email}`);
       if (response.ok) {
         const json = await response.json();
         setData(json || []);

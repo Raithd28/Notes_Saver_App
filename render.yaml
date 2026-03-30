@@ -3,8 +3,8 @@ services:
     name: notes-app-backend
     env: docker
     region: singapore
-    dockerfilePath: ./server/Notes/Dockerfile
-    rootDir: ./server
+    dockerfilePath: ./Dockerfile
+    rootDir: ./server/Notes
     plan: free
     healthCheckPath: /api/user
     envVars:
@@ -28,6 +28,7 @@ services:
     buildCommand: npm install --legacy-peer-deps && npm run build
     startCommand: npm install -g serve && serve -s build -l 3000
     plan: free
+    rootDir: ./client
     envVars:
       - key: REACT_APP_API_URL
         value: https://notes-app-backend.onrender.com

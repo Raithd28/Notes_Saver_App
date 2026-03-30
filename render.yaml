@@ -3,7 +3,8 @@ services:
     name: notes-app-backend
     env: docker
     region: singapore
-    dockerfilePath: ./server/Notes/Dockerfile
+    rootDir: ./server/Notes
+    dockerfilePath: ./Dockerfile
     plan: free
     healthCheckPath: /api/user
     envVars:

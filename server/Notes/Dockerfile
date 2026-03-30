@@ -1,20 +1,30 @@
+# Use Maven image to build the application
+FROM maven:3.9.11-eclipse-temurin-21 AS build
 
-FROM maven:3.8.5-openjdk-17 AS build
+# Set working directory
 WORKDIR /app
-# Copy pom.xml and source from current directory (rootDir is set to server/Notes in render.yaml)
-COPY pom.xml ./
+
+# Copy pom.xml and download dependencies
+COPY pom.xml .
+RUN mvn dependency:go-offline -B
+
+# Copy source code
 COPY src ./src
+
+# Build the application (skip tests for faster build)
 RUN mvn clean package -DskipTests
 
-#
-# Package stage
-#
-FROM eclipse-temurin:17-jdk-alpine
-WORKDIR /app
-COPY --from=build /app/target/Notes-0.0.1-SNAPSHOT.jar Notes.jar
+# Use JDK image to run the application
+FROM eclipse-temurin:21-jre
 
-# Render provides PORT as environment variable
-ENV PORT=8080
+# Set working directory
+WORKDIR /app
+
+# Copy the jar file from build stage
+COPY --from=build /app/target/*.jar app.jar
+
+# Expose port 8080
 EXPOSE 8080
 
-ENTRYPOINT ["java","-jar","Notes.jar"]
+# Run the application
+ENTRYPOINT ["java", "-jar", "app.jar"]

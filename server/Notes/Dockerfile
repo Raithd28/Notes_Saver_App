@@ -1,9 +1,9 @@
 
 FROM maven:3.8.5-openjdk-17 AS build
 WORKDIR /app
-# Copy pom.xml and source code from server/Notes directory
-COPY pom.xml ./
-COPY src ./src
+# Build context is repo root, copy from server/Notes
+COPY server/Notes/pom.xml ./
+COPY server/Notes/src ./src
 RUN mvn clean package -DskipTests
 
 #

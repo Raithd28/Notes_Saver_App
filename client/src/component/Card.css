@@ -1,0 +1,128 @@
+.note-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  border-left: 5px solid #667eea;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.note-card:hover {
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+  transform: translateY(-4px);
+}
+
+.note-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.note-title {
+  color: #333;
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin: 0;
+  flex: 1;
+  word-wrap: break-word;
+  letter-spacing: 0.3px;
+}
+
+.note-date {
+  color: #999;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.note-date i {
+  color: #667eea;
+}
+
+.note-content {
+  flex: 1;
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+
+.note-description {
+  color: #666;
+  font-size: 0.95rem;
+  margin: 0;
+  line-height: 1.6;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-wrap: break-word;
+}
+
+.note-actions {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+  padding-top: 1rem;
+  border-top: 1px solid #e0e0e0;
+}
+
+.note-btn {
+  background: none;
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 1rem;
+}
+
+.edit-btn {
+  color: #667eea;
+  background: rgba(102, 126, 234, 0.1);
+}
+
+.edit-btn:hover {
+  background: rgba(102, 126, 234, 0.2);
+  transform: scale(1.1);
+}
+
+.delete-btn {
+  color: #ff5050;
+  background: rgba(255, 80, 80, 0.1);
+}
+
+.delete-btn:hover {
+  background: rgba(255, 80, 80, 0.2);
+  transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+  .note-card {
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .note-title {
+    font-size: 1.1rem;
+  }
+
+  .note-header {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .note-date {
+    width: 100%;
+  }
+}

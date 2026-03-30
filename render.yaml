@@ -2,7 +2,9 @@ services:
   - type: web
     name: notes-app-backend
     env: docker
+    region: singapore
     dockerfilePath: ./server/Notes/Dockerfile
+    rootDir: ./server
     plan: free
     healthCheckPath: /api/user
     envVars:
@@ -22,8 +24,9 @@ services:
   - type: web
     name: notes-app-frontend
     env: node
-    buildCommand: cd client && npm install --legacy-peer-deps && npm run build
-    startCommand: cd client && npm install -g serve && serve -s build -l 3000
+    region: singapore
+    buildCommand: npm install --legacy-peer-deps && npm run build
+    startCommand: npm install -g serve && serve -s build -l 3000
     plan: free
     envVars:
       - key: REACT_APP_API_URL

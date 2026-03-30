@@ -1,0 +1,30 @@
+services:
+  - type: web
+    name: notes-app-backend
+    env: docker
+    dockerfilePath: ./server/Notes/Dockerfile
+    plan: free
+    healthCheckPath: /api/user
+    envVars:
+      - key: SPRING_DATASOURCE_URL
+        scope: run
+      - key: SPRING_DATASOURCE_USERNAME
+        scope: run
+      - key: SPRING_DATASOURCE_PASSWORD
+        scope: run
+      - key: SPRING_JPA_HIBERNATE_DDL_AUTO
+        value: update
+      - key: SPRING_JPA_DATABASE_PLATFORM
+        value: org.hibernate.dialect.PostgreSQLDialect
+      - key: SERVER_SERVLET_CONTEXT_PATH
+        value: /
+  
+  - type: web
+    name: notes-app-frontend
+    env: node
+    buildCommand: cd client && npm install --legacy-peer-deps && npm run build
+    startCommand: cd client && npm install -g serve && serve -s build -l 3000
+    plan: free
+    envVars:
+      - key: REACT_APP_API_URL
+        value: https://notes-app-backend.onrender.com
